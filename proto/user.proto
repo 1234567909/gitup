@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package user;
+//option go_package=".;user";
+
+option go_package = "github.com/1234567909/githupaa.g4it"; // Golang的报名
+
+service User {
+  rpc GetUser   (GetUserRequest)    returns (GetUserResponse);
+  rpc GetUsers  (GetUsersRequest)   returns (GetUsersResponse);
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse);
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
+  rpc GetUserByUsername(GetUserByUsernameRequest) returns (GetUserByUsernameResponse);
+}
+
+message UserInfo {
+  int64  ID       = 10;
+  string Username = 20;
+  string Password = 30;
+  string Mobile   = 40;
+  int64  Age      = 50;
+  Sex    Sex      = 60;
+  string Address  = 70;
+}
+
+message GetUserRequest {
+  int64 ID = 10;
+}
+
+message GetUserResponse {
+  UserInfo Info = 10;
+}
+
+message GetUsersRequest {
+  int64 Offset = 10;
+  int64 Limit  = 20;
+}
+
+message GetUsersResponse {
+  repeated UserInfo Infos = 10;
+  int64             Total = 20;
+}
+
+message CreateUserRequest {
+  UserInfo Info = 10;
+}
+
+message CreateUserResponse {
+  UserInfo Info = 10;
+}
+
+message UpdateUserRequest {
+  UserInfo Info = 10;
+}
+
+message UpdateUserResponse {
+  UserInfo Info = 10;
+}
+
+message DeleteUserRequest {
+  int64 ID = 10;
+}
+
+message DeleteUserResponse {}
+
+message GetUserByUsernameRequest {
+  string Username = 10;
+}
+
+message GetUserByUsernameResponse {
+  UserInfo Info = 10;
+}
+
+enum Sex {
+  Default = 0;
+  Man     = 10;
+  WoMan   = 20;
+}
